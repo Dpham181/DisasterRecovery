@@ -25,11 +25,7 @@ pipeline {
             }
         }
         
-             stage('docker deploy to localhost') {
-            steps {
-              bat 'docker run -d -p 8081:8083 dpham181/disaster-recovery' 
-            }
-        }
+           
         
        
         
