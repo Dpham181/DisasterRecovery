@@ -31,19 +31,7 @@ pipeline {
             }
         }
         
-         stage('docker hub authentication ') {
-
-			steps {
-				bat 'echo %DockerHub_Authentication_PSW%| docker login -u %DockerHub_Authentication_USR% --password-stdin'
-			}
-		}
-
-		stage('docker push to docker hub') {
-
-			steps {
-				bat 'docker push  dpham181/disaster-recovery'
-			}
-		}
+       
         
    }    
 }
