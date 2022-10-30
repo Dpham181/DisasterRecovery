@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('git login and checkout') {
             steps {
-               git branch: 'app-dev', credentialsId: 'diepla1910', url: 'git@github.com:Dpham181/DisasterRecovery.git'
+               git branch: 'diep-dev', credentialsId: 'diepla1910', url: 'git@github.com:Dpham181/DisasterRecovery.git'
                checkout scm
             }
         }
