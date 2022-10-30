@@ -41,7 +41,7 @@ pipeline {
 		stage('docker push to docker hub') {
 
 			steps {
-				bat 'docker push  dpham181/DisasterRecovery'
+				bat 'docker push  dpham181/disaster-recovery'
 			}
 		}
         
