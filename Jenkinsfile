@@ -21,13 +21,13 @@ pipeline {
         }
           stage('docker build image') {
             steps {
-              bat 'docker  build -t dpham181/DisasterRecovery .' 
+              bat 'docker  build -t dpham181/disasterRecovery .' 
             }
         }
         
              stage('docker deploy to localhost') {
             steps {
-              bat 'docker run -d -p 8081:8083 dpham181/DisasterRecovery' 
+              bat 'docker run -d -p 8081:8083 dpham181/disasterRecovery' 
             }
         }
         
