@@ -1,0 +1,66 @@
+package com.project.DisasterRecovery.Services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.project.DisasterRecovery.Entities.Job;
+import com.project.DisasterRecovery.repositories.JobRepo;
+
+@Service 
+public class JobServices {
+
+	@Autowired 
+	JobRepo jobRepo;
+	
+	// list of job
+    public ResponseEntity<List<Job>> getListJob() {
+        List<Job> jobs = jobRepo.findAll();
+        if(jobs.isEmpty()) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok().body(jobs);
+    }
+    
+    // get one job
+    public ResponseEntity<Job> getOneJob(int id) {
+        if(jobRepo.existsById(id)){
+            return ResponseEntity.ok().body(jobRepo.findById(id).get());
+        }
+        return ResponseEntity.notFound().build();
+    }
+    
+    // create job
+    public ResponseEntity<Job> createJob(Job job){
+        if(job.getJob_Code().isEmpty())
+            return ResponseEntity.badRequest().build();
+        jobRepo.save(job);
+        return ResponseEntity.status(201).build();
+    }
+    
+    // update job
+    public ResponseEntity<Job> updateJob(int id, Job job){
+        if(getOneJob(id).hasBody())
+        {
+        	Job modifiedJob = getOneJob(id).getBody();
+        	modifiedJob.setDescription(job.getDescription());
+        	modifiedJob.setJob_Code(job.getJob_Code());
+        	modifiedJob.setHourly_Rate(job.getHourly_Rate());
+        	modifiedJob.setMax_Hours_Per_Day(job.getMax_Hours_Per_Day());   
+        	return ResponseEntity.accepted().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+    
+    // delete job
+    public ResponseEntity<Job> deleteJob(int id)
+    {
+    	if(getOneJob(id).hasBody())
+    	{
+    		jobRepo.deleteById(id);
+    		return ResponseEntity.accepted().build();
+    	}
+    	return ResponseEntity.notFound().build();
+    }
+    
+}

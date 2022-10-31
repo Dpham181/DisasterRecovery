@@ -12,5 +12,5 @@ public class HomeController {
 		return "Api testing";
 	}
 	
-	
+
 }
