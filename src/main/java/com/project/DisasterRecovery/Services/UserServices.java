@@ -67,9 +67,8 @@ public class UserServices implements UserDetailsService {
         System.out.println(DBuser.getPassword());
 
         User user = new User(DBuser.getEmail(), DBuser.getPassword(), new ArrayList<>() );
-        System.out.println(user);
 
-        if(user.getPassword().isBlank()){
+        if(user.getPassword().isEmpty()){
 
             throw new UsernameNotFoundException("User not found with email: " + email);
         }
