@@ -1,5 +1,7 @@
 package com.project.DisasterRecovery;
 import com.project.DisasterRecovery.Entities.EndUser;
+import com.project.DisasterRecovery.Entities.JwtResponse;
+
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +19,22 @@ class UserServicesTests {
     @Autowired
     WebTestClient   WebTestClient;
 
+    
+    // user endpoint  
     @Test
     void test0() {
-        this.WebTestClient.get().uri("/users").exchange().expectStatus().isOk();
+        this.WebTestClient.get().uri("/users/").exchange().expectStatus().isOk();
     }
 
-    
+    // user register 
     @Test
     void test1() {
         this.WebTestClient.post().uri("/users/").contentType(MediaType.APPLICATION_JSON).bodyValue(new EndUser("danhpham312@gmail.com","123456")).exchange().expectStatus().isCreated();
     }
+    // user login 
+    @Test
+    void test2() {
+        this.WebTestClient.post().uri("/users/login").contentType(MediaType.APPLICATION_JSON).bodyValue(new EndUser("danhpham312@gmail.com","123456")).exchange().expectStatus().isOk();
+}
     
 }
