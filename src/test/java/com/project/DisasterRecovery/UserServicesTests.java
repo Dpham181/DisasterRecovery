@@ -23,9 +23,10 @@ class UserServicesTests {
         this.WebTestClient.get().uri("/users").exchange().expectStatus().isOk();
     }
 
+    
     @Test
     void test1() {
         this.WebTestClient.post().uri("/users/").contentType(MediaType.APPLICATION_JSON).bodyValue(new EndUser("danhpham312@gmail.com","123456")).exchange().expectStatus().isCreated();
     }
-
+    
 }

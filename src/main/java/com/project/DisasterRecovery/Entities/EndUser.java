@@ -1,11 +1,11 @@
 package com.project.DisasterRecovery.Entities;
 
 
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -14,15 +14,24 @@ import java.io.Serializable;
 @Entity
 public class EndUser implements Serializable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
-    private Integer User_Id;
+    private Integer id;
     @Column
     @NonNull
     private String email;
     @Column
     @NonNull
     private String password;
-
-
+    
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+    		  name = "user_roles", 
+    		  joinColumns = @JoinColumn(name = "User_Id"), 
+    		  inverseJoinColumns = @JoinColumn(name = "Role_Id"))
+    Set<Role> UserRole;
 }
