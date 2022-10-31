@@ -12,4 +12,8 @@ public class HomeController {
 		return "Api testing";
 	}
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> app-dev
 }
