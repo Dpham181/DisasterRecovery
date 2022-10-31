@@ -60,11 +60,9 @@ public class UserServices implements UserDetailsService {
     }
     // get user by email
 	public UserDetails loadUserByUsername(String email)  throws UsernameNotFoundException{
-        System.out.println(email);
 
 		EndUser DBuser = UserRepo.loadUserByUsername(email);
-        System.out.println(DBuser.getEmail());
-        System.out.println(DBuser.getPassword());
+
 
         User user = new User(DBuser.getEmail(), DBuser.getPassword(), new ArrayList<>() );
 

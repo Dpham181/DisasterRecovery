@@ -12,7 +12,6 @@ import java.util.Set;
 @RequiredArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(uniqueConstraints={@UniqueConstraint(columnNames={"email"})})
 
 public class EndUser implements Serializable {
 
