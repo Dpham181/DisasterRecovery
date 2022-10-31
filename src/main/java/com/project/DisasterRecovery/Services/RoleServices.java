@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.project.DisasterRecovery.Entities.EndUser;
 import com.project.DisasterRecovery.Entities.Role;
 import com.project.DisasterRecovery.repositories.RoleRepo;
 
