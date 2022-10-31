@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.project.DisasterRecovery.Entities.Job;
 import com.project.DisasterRecovery.Services.JobServices;
 import com.project.DisasterRecovery.repositories.JobRepo;
 
@@ -20,8 +21,26 @@ public class JobTestMock {
 	JobServices jobServices;
 	
 	@Test
-	public <Job> getJobList()
+	public List<Job> getJobList()
 	{
-		
+		return jobServices.getListJob().getBody();
+	}
+	
+	@Test
+	public Job getOneJobItem(int id)
+	{
+		return jobServices.getOneJob(id).getBody();
+	}
+	
+	@Test
+	public void updateJobItem(int id, Job j)
+	{
+		jobServices.updateJob(id, j);
+	}
+	
+	@Test
+	public void deleteJobItem(int id)
+	{
+		jobServices.deleteJob(id);
 	}
 }
