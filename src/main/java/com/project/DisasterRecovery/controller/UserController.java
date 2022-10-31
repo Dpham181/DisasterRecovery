@@ -2,6 +2,9 @@ package com.project.DisasterRecovery.controller;
 
 import com.project.DisasterRecovery.Entities.EndUser;
 import com.project.DisasterRecovery.Services.UserServices;
+
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,14 +19,16 @@ public class UserController {
 
 
     @GetMapping("")
-    public ResponseEntity index(){
+    public ResponseEntity<Optional> index(){
         return ResponseEntity.ok().build();
     }
     @PostMapping("/")
-    public ResponseEntity createUser(@RequestBody EndUser user){
+    public ResponseEntity<Optional> createUser(@RequestBody EndUser user){
 
         System.out.println(user);
         return UserServices.createUser(user);
     }
-
+   
 }
+
+
