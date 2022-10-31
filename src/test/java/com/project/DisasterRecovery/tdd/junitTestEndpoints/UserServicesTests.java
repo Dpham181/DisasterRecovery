@@ -1,4 +1,4 @@
-package com.project.DisasterRecovery;
+package com.project.DisasterRecovery.tdd.junitTestEndpoints;
 import com.project.DisasterRecovery.Entities.EndUser;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

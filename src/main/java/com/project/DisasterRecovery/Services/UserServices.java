@@ -22,7 +22,7 @@ public class UserServices {
 
     // create user
 
-    public ResponseEntity createUser(EndUser user){
+    public ResponseEntity<?> createUser(EndUser user){
         if(user.getEmail().isEmpty() && user.getPassword().isEmpty())
             return ResponseEntity.badRequest().build();
         UserRepo.save(user);

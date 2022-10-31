@@ -49,20 +49,20 @@ public class TimeCard  implements Serializable {
     @NonNull
     private String Status ;		
     
-    /*
+    
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})       
     @JoinTable(																																			
     		  name = "Timecard_Job", 
-    		  joinColumns = @JoinColumn(name = "Timecard_Id"))
-    		  //inverseJoinColumns = @JoinColumn(name = "Job_Id"))
+    		  joinColumns = @JoinColumn(name = "Timecard_Id"),
+    		  inverseJoinColumns = @JoinColumn(name = "Job_Id"))
    Set<Job> TimecardJob;
     
     
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})       
     @JoinTable(																																			
     		  name = "Timecard_Machine", 
-    		  joinColumns = @JoinColumn(name = "Timecard_Id"))
+    		  joinColumns = @JoinColumn(name = "Timecard_Id"),
     		  inverseJoinColumns = @JoinColumn(name = "Machine_Id"))
     Set<Machine> TimecardMachine;
-    */
+    
 }
