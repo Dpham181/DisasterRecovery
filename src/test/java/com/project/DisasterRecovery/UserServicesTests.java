@@ -1,6 +1,5 @@
 package com.project.DisasterRecovery;
 import com.project.DisasterRecovery.Entities.EndUser;
-import com.project.DisasterRecovery.Entities.JwtResponse;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
