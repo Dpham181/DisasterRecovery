@@ -12,6 +12,8 @@ import java.util.Set;
 @RequiredArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"email"})})
+
 public class EndUser implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -20,7 +22,6 @@ public class EndUser implements Serializable {
     private Integer id;
 	
     @NonNull
-    @Column(unique = true)
     private String email;
     @Column
     @NonNull

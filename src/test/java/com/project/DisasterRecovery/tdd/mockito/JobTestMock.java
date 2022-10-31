@@ -19,9 +19,5 @@ public class JobTestMock {
 	@Autowired
 	JobServices jobServices;
 	
-	@Test
-	public <Job> getJobList()
-	{
-		
-	}
+	
 }
