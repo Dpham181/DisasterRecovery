@@ -29,7 +29,7 @@ public class Machine implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Integer id;
-    @Column
+    @Column(unique = true, length = 200)
     @NonNull
     private String Machine_Code;
     @Column
