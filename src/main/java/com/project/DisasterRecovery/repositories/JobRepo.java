@@ -13,4 +13,5 @@ import java.util.Optional;
 public interface JobRepo extends JpaRepository<Job, Integer>{
     @Query(value = "Select * from job J Where J.code =?1", nativeQuery = true)
     Job loadJobByJobCode(String JobCode);
+
 }

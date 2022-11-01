@@ -1,5 +1,6 @@
 package com.project.DisasterRecovery.Services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.project.DisasterRecovery.Entities.EndUser;
@@ -7,8 +8,12 @@ import com.project.DisasterRecovery.exception.DuplicateException;
 import com.project.DisasterRecovery.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.project.DisasterRecovery.Entities.EndUser;
 import com.project.DisasterRecovery.Entities.Job;
 import com.project.DisasterRecovery.repositories.JobRepo;
 
@@ -43,6 +48,7 @@ public class JobServices {
         Job ExitsJob =  jobRepo.findById(id).orElseThrow(() -> new DuplicateException("Job already exists :: " + job.getCode() ));
 
         return ResponseEntity.ok(ExitsJob);
+    
     }
     
     // update job

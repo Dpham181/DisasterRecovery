@@ -76,6 +76,8 @@ public class TimeCardServices {
         	modifiedTimecard.setHours(timecard.getHours());
         	modifiedTimecard.setAmount(timecard.getAmount()); 
         	modifiedTimecard.setStatus(timecard.getStatus());
+        	modifiedTimecard.setTimecardJob(timecard.getTimecardJob());
+        	modifiedTimecard.setTimecardMachine(timecard.getTimecardMachine());
         	return ResponseEntity.accepted().build();
         }
         return ResponseEntity.notFound().build();
