@@ -34,16 +34,16 @@ public class TimeCard  implements Serializable {
     private Integer id;
     @Column(unique = true, length = 200)
     @NonNull
-    private String Site_Code;
+    private String Code;
     @Column
     @NonNull
-    private String Contractor_Name;
+    private String Contractor;
     @Column
     @NonNull
-    private Double Total_Hours;	
+    private Double Hours;	
     @Column
     @NonNull
-    private Double Total_Amount;										 
+    private Double Amount;										 
 
     @Column
     @NonNull

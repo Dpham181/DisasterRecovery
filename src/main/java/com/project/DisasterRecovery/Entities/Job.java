@@ -31,16 +31,16 @@ public class Job implements Serializable {
     private Integer id;
     @Column(unique = true, length = 200)
     @NonNull
-    private String Job_Code;
+    private String Code;
     @Column
     @NonNull
     private String Description;
     @Column
     @NonNull
-    private Double Hourly_Rate;	
+    private Double Rate;	
     @Column
     @NonNull
-    private Double Max_Hours_Per_Day;										 
+    private Double Hours;										 
 
     @ManyToMany(mappedBy = "TimecardJob", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
 	Set<TimeCard> timecards;
