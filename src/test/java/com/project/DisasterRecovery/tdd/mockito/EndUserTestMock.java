@@ -33,7 +33,7 @@ public class EndUserTestMock {
 	public void createUser() throws DuplicateException
 	{
 		EndUser u = new EndUser("user3@gmail.com", "123456");
-		assertEquals(200, userServices.createUser(u).getStatusCodeValue());
+		assertEquals(201, userServices.createUser(u).getStatusCodeValue());
 	}
 	
 	@Test

@@ -26,11 +26,5 @@ public class RoleTestMock {
 	@Autowired
 	RoleServices roleServices;
 	
-	@Test
-	public void createRoleUser()
-	{
-		Role r = new Role();
-		assertEquals(201, roleServices.createRole(r).getStatusCodeValue());
-	}
 
 }
