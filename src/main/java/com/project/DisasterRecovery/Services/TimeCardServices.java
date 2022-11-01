@@ -78,6 +78,7 @@ public class TimeCardServices {
         	modifiedTimecard.setStatus(timecard.getStatus());
         	modifiedTimecard.setTimecardJob(timecard.getTimecardJob());
         	modifiedTimecard.setTimecardMachine(timecard.getTimecardMachine());
+        	timecardRepo.save(modifiedTimecard);
         	return ResponseEntity.accepted().build();
         }
         return ResponseEntity.notFound().build();

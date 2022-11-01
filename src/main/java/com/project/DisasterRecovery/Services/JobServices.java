@@ -23,6 +23,12 @@ public class JobServices {
 	@Autowired 
 	JobRepo jobRepo;
 	
+//	public List<Job> getListJob()
+//	{
+//		List<Job> jobs = jobRepo.findAll();
+//		return jobs;
+//	}
+	
 	// list of job
     public ResponseEntity<List<Job>> getListJob() {
         List<Job> jobs = jobRepo.findAll();
@@ -60,6 +66,7 @@ public class JobServices {
         	modifiedJob.setCode(job.getCode());
         	modifiedJob.setRate(job.getRate());
         	modifiedJob.setHours(job.getHours());   
+        	jobRepo.save(modifiedJob);
         	return ResponseEntity.accepted().build();
         }
         return ResponseEntity.notFound().build();

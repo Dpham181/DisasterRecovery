@@ -4,11 +4,13 @@ insert into end_user(email,password) values
 insert into Role(role) values("Admin");
 insert into Role(role) values("User");
 
+insert into end_user(email,password) values
+("admin@gmail.com","$2a$10$xkpl86kt4nhVFoC8XYyq6egRF8WmHL4zp4af6P610wBYoqhW8mTci"),
+("user@gmail.com","$2a$10$xkpl86kt4nhVFoC8XYyq6egRF8WmHL4zp4af6P610wBYoqhW8mTci");
+
 insert into user_roles values
 (1,1),
 (2,2);
-
-
 
 
 insert into job(code,description,rate,hours) values
@@ -23,3 +25,9 @@ insert into machine(code,description,rent,hours) values
 ("AT-800","Appliance",8, 4),
 ("AirComp","Air Compressor",10, 4),
 ("Power Tools","Power Tools",6, 8);
+
+insert into time_card(code, contractor, hours, amount, status) values
+("PA-120", "Mike Fernandez", 80, 2400, "Review"),
+("Nj-080", "Robin Gaze", 120, 3000, "Review"),
+("MA-340", "Adam Su", 100, 2800, "Finalized"),
+("KC-140", "David Rowly", 140, 3200, "Finalized")

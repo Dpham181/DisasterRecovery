@@ -1,13 +1,14 @@
 package com.project.DisasterRecovery.repositories;
 
 import com.project.DisasterRecovery.Entities.Job;
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.project.DisasterRecovery.Entities.Job;
 import com.project.DisasterRecovery.Entities.TimeCard;
 import org.springframework.transaction.annotation.Transactional;
 

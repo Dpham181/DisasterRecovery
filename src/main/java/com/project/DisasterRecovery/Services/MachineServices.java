@@ -51,6 +51,7 @@ public class MachineServices {
         	modifiedMachine.setCode(machine.getCode());
         	modifiedMachine.setRent(machine.getRent());
         	modifiedMachine.setHours(machine.getHours());   
+        	machineRepo.save(modifiedMachine);
         	return ResponseEntity.accepted().build();
         }
         return ResponseEntity.notFound().build();
