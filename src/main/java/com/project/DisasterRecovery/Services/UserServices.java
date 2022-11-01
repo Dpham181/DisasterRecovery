@@ -3,7 +3,9 @@
 package com.project.DisasterRecovery.Services;
 
 import com.project.DisasterRecovery.Entities.EndUser;
+import com.project.DisasterRecovery.Entities.Job;
 import com.project.DisasterRecovery.exception.DuplicateException;
+import com.project.DisasterRecovery.exception.NotFoundException;
 import com.project.DisasterRecovery.repositories.UserRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,11 +57,12 @@ public class UserServices implements UserDetailsService {
     }
    // get one user
 
-    public ResponseEntity<EndUser> geOneUsers(int id) {
+    public ResponseEntity<EndUser> getOneUsers(int id) throws NotFoundException {
         if(UserRepo.existsById(id)){
             return ResponseEntity.ok().body(UserRepo.findById(id).get());
         }
         return ResponseEntity.notFound().build();
+    	 
     }
     // get user by email
 	public UserDetails loadUserByUsername(String email)  throws UsernameNotFoundException{

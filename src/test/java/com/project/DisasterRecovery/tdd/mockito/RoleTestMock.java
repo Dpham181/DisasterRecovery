@@ -1,14 +1,22 @@
 package com.project.DisasterRecovery.tdd.mockito;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.project.DisasterRecovery.Entities.Role;
 import com.project.DisasterRecovery.Services.RoleServices;
 import com.project.DisasterRecovery.repositories.RoleRepo;
+import com.project.DisasterRecovery.Entities.*;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class RoleTestMock {
 	
 	@Mock 
@@ -19,9 +27,10 @@ public class RoleTestMock {
 	RoleServices roleServices;
 	
 	@Test
-	public void createRoleUser(Role r)
+	public void createRoleUser()
 	{
-		roleServices.createRole(r);
+		Role r = new Role();
+		assertEquals(201, roleServices.createRole(r).getStatusCodeValue());
 	}
 
 }

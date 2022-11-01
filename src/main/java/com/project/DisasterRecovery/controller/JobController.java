@@ -5,6 +5,9 @@ import com.project.DisasterRecovery.Entities.Job;
 import com.project.DisasterRecovery.Services.JobServices;
 import com.project.DisasterRecovery.exception.DuplicateException;
 import com.project.DisasterRecovery.exception.NotFoundException;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +27,8 @@ public class JobController {
       @GetMapping("")
       public ResponseEntity<?> listOfJobs(){
           return JobServices.getListJob();
+    	  //List<Job> jobs = JobServices.getListJob();
+    	  //return ResponseEntity.ok().body(jobs);
       }
 
       @PostMapping("")
