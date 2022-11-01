@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -31,6 +32,6 @@ public class EndUser implements Serializable {
     		  name = "user_roles", 
     		  joinColumns = @JoinColumn(name = "User_Id"), 
     		  inverseJoinColumns = @JoinColumn(name = "Role_Id"))
-    Set<Role> UserRole;
+    Set<Role> UserRole = new HashSet<>();;
 }
 
