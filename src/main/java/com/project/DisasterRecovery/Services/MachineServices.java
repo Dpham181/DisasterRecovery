@@ -33,8 +33,13 @@ public class MachineServices {
     // create machine
     public ResponseEntity<Machine> createMachine(Machine machine){
       
-        machineRepo.save(machine);
-        return ResponseEntity.status(201).build();
+    	Machine checkMachine = machineRepo.loadMachineByCode(machine.getCode());
+    	if(checkMachine == null)
+    	{
+    		machineRepo.save(machine);
+            return ResponseEntity.status(201).build();
+    	}
+        return ResponseEntity.status(409).build();
     }
     
     // update machine

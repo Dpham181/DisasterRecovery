@@ -1,11 +1,16 @@
 package com.project.DisasterRecovery.Services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.project.DisasterRecovery.Entities.EndUser;
 import com.project.DisasterRecovery.Entities.Job;
 import com.project.DisasterRecovery.repositories.JobRepo;
 
@@ -32,9 +37,13 @@ public class JobServices {
     
     // create job
     public ResponseEntity<Job> createJob(Job job){
-      
-        jobRepo.save(job);
-        return ResponseEntity.status(201).build();
+        Job checkJob = jobRepo.loadJobByCode(job.getCode());
+        if(checkJob == null)
+        {
+        	jobRepo.save(job);
+            return ResponseEntity.status(201).build();
+        }
+        return ResponseEntity.status(409).build();
     }
     
     // update job

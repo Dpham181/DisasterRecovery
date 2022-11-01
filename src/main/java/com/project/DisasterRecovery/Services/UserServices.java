@@ -75,9 +75,6 @@ public class UserServices implements UserDetailsService {
         }
 
         return user;
-		
-		
-	}
-
-	
+			
+	}	
 }
