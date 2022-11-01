@@ -1,6 +1,7 @@
 package com.project.DisasterRecovery.Entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -24,6 +26,7 @@ import lombok.Setter;
 @RequiredArgsConstructor
 @NoArgsConstructor
 @Entity
+
 public class TimeCard  implements Serializable {
 
 	
@@ -43,8 +46,7 @@ public class TimeCard  implements Serializable {
     private Double Hours;	
     @Column
     @NonNull
-    private Double Amount;										 
-
+    private Double Amount;
     @Column
     @NonNull
     private String Status ;		
@@ -55,7 +57,7 @@ public class TimeCard  implements Serializable {
     		  name = "Timecard_Job", 
     		  joinColumns = @JoinColumn(name = "Timecard_Id"),
     		  inverseJoinColumns = @JoinColumn(name = "Job_Id"))
-   Set<Job> TimecardJob;
+   Set<Job> TimecardJob ;
     
     
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})       
@@ -63,6 +65,6 @@ public class TimeCard  implements Serializable {
     		  name = "Timecard_Machine", 
     		  joinColumns = @JoinColumn(name = "Timecard_Id"),
     		  inverseJoinColumns = @JoinColumn(name = "Machine_Id"))
-    Set<Machine> TimecardMachine;
+    Set<Machine> TimecardMachine ;
     
 }

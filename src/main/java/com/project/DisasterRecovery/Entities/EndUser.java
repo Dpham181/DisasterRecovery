@@ -32,6 +32,6 @@ public class EndUser implements Serializable {
     		  name = "user_roles", 
     		  joinColumns = @JoinColumn(name = "User_Id"), 
     		  inverseJoinColumns = @JoinColumn(name = "Role_Id"))
-    Set<Role> UserRole = new HashSet<>();;
+    Set<Role> UserRole = new HashSet<>();
 }
 
