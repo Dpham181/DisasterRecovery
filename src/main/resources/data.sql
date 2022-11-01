@@ -1,4 +1,6 @@
-
+insert into end_user(email,password) values
+("admin@gmail.com","$2a$10$xkpl86kt4nhVFoC8XYyq6egRF8WmHL4zp4af6P610wBYoqhW8mTci"),
+("user@gmail.com","$2a$10$xkpl86kt4nhVFoC8XYyq6egRF8WmHL4zp4af6P610wBYoqhW8mTci");
 insert into Role(role) values("Admin");
 insert into Role(role) values("User");
 
