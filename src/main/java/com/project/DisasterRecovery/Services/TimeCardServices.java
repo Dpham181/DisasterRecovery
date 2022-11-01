@@ -32,8 +32,9 @@ public class TimeCardServices {
     
     // create timecard
     public ResponseEntity<TimeCard> createTimeCard(TimeCard timecard){
-        if(timecard.getSite_Code().isEmpty())
+        if(timecard.getCode().isEmpty())
             return ResponseEntity.badRequest().build();
+        System.out.println(timecard.getTimecardJob());
         timecardRepo.save(timecard);
         return ResponseEntity.status(201).build();
     }
@@ -43,10 +44,10 @@ public class TimeCardServices {
         if(getOneTimeCard(id).hasBody())
         {
         	TimeCard modifiedTimecard = getOneTimeCard(id).getBody();
-        	modifiedTimecard.setSite_Code(timecard.getSite_Code());
-        	modifiedTimecard.setContractor_Name(timecard.getContractor_Name());
-        	modifiedTimecard.setTotal_Hours(timecard.getTotal_Hours());
-        	modifiedTimecard.setTotal_Amount(timecard.getTotal_Amount()); 
+        	modifiedTimecard.setCode(timecard.getCode());
+        	modifiedTimecard.setContractor(timecard.getContractor());
+        	modifiedTimecard.setHours(timecard.getHours());
+        	modifiedTimecard.setAmount(timecard.getAmount()); 
         	modifiedTimecard.setStatus(timecard.getStatus());
         	return ResponseEntity.accepted().build();
         }

@@ -20,23 +20,30 @@ public class TimeCardController {
 
 
     @GetMapping("")
-    public ResponseEntity<?> listOfJobs(){
+    public ResponseEntity<?> listOfTimeCard(){
         return TimeCardServices.getListTimeCard();
     }
-
+   /// class timecardDto
+    // timecard 
+    // list job 
+    // list machine
+    // form    list of job list of machine in agular 
     @PostMapping("")
-    public ResponseEntity<?> createJob(@RequestBody TimeCard TimeCard){
+    public ResponseEntity<?> createTimeCard(@RequestBody TimeCard TimeCard){
+    	System.out.println(TimeCard.getTimecardJob());
         return TimeCardServices.createTimeCard(TimeCard);
     }
-
+    // timecard id 
+    // job timecard 
+    // machine timecard 
     @PutMapping ("/{id}")
-    public ResponseEntity<?> UpdateJob(@PathVariable Integer id, @RequestBody TimeCard TimeCard){
+    public ResponseEntity<?> UpdateTimeCard(@PathVariable Integer id, @RequestBody TimeCard TimeCard){
         return TimeCardServices.updateTimeCard(id,TimeCard);
     }
 
 
     @GetMapping ("/{id}")
-    public ResponseEntity<?> getOneJob(@PathVariable int id){
+    public ResponseEntity<?> getOneTimeCard(@PathVariable int id){
         System.out.println(id);
         return TimeCardServices.getOneTimeCard(id);
     }
