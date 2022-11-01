@@ -32,7 +32,7 @@ public class TimeCard  implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Integer id;
-    @Column
+    @Column(unique = true, length = 200)
     @NonNull
     private String Site_Code;
     @Column

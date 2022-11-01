@@ -6,6 +6,8 @@ import com.project.DisasterRecovery.Entities.EndUser;
 import com.project.DisasterRecovery.repositories.UserRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,11 +15,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import reactor.core.Exceptions;
 
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.apache.logging.log4j.ThreadContext.isEmpty;
 
 
 @Service
@@ -32,14 +38,17 @@ public class UserServices implements UserDetailsService {
     // create user
 
 	@SuppressWarnings("rawtypes")
-	public ResponseEntity<Optional> createUser(EndUser user){
+	public ResponseEntity<Optional> createUser(EndUser user) {
         if(user.getEmail().isEmpty() && user.getPassword().isEmpty())
             return ResponseEntity.badRequest().build();
-        // need to check user exits 
-    	user.setPassword(encoder.encode(user.getPassword()));
+        EndUser DBuser = UserRepo.loadUserByUsername(user.getEmail());
+        if(DBuser == null) {
+            user.setPassword(encoder.encode(user.getPassword()));
 
-        UserRepo.save(user);
-        return ResponseEntity.status(201).build();
+            UserRepo.save(user);
+            return ResponseEntity.status(201).build();
+        }
+        return ResponseEntity.status(409).build();
 
     }
 
