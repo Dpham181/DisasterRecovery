@@ -33,6 +33,8 @@ public class UserServices implements UserDetailsService {
 
 	@SuppressWarnings("rawtypes")
 	public ResponseEntity<Optional> createUser(EndUser user) {
+		System.out.println(user.getUserRole());
+
         if(user.getEmail().isEmpty() && user.getPassword().isEmpty())
             return ResponseEntity.badRequest().build();
         EndUser DBuser = UserRepo.loadUserByUsername(user.getEmail());

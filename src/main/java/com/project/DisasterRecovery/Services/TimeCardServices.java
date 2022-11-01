@@ -31,6 +31,7 @@ public class TimeCardServices {
     }
     
     // create timecard
+    // it should take a list of job and a list machine 
     public ResponseEntity<TimeCard> createTimeCard(TimeCard timecard){
         if(timecard.getCode().isEmpty())
             return ResponseEntity.badRequest().build();
