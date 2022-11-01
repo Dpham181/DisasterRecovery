@@ -69,15 +69,12 @@ public class UserServices implements UserDetailsService {
         User user = new User(DBuser.getEmail(), DBuser.getPassword(), new ArrayList<>() );
         System.out.println(user);
 
-        if(user.getPassword().isBlank()){
+        if(user.getPassword().isEmpty()){
 
             throw new UsernameNotFoundException("User not found with email: " + email);
         }
 
         return user;
-		
-		
-	}
-
-	
+			
+	}	
 }
