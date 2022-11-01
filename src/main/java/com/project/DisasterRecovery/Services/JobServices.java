@@ -32,8 +32,7 @@ public class JobServices {
     
     // create job
     public ResponseEntity<Job> createJob(Job job){
-        if(job.getJob_Code().isEmpty())
-            return ResponseEntity.badRequest().build();
+      
         jobRepo.save(job);
         return ResponseEntity.status(201).build();
     }
@@ -44,9 +43,9 @@ public class JobServices {
         {
         	Job modifiedJob = getOneJob(id).getBody();
         	modifiedJob.setDescription(job.getDescription());
-        	modifiedJob.setJob_Code(job.getJob_Code());
-        	modifiedJob.setHourly_Rate(job.getHourly_Rate());
-        	modifiedJob.setMax_Hours_Per_Day(job.getMax_Hours_Per_Day());   
+        	modifiedJob.setCode(job.getCode());
+        	modifiedJob.setRate(job.getRate());
+        	modifiedJob.setHours(job.getHours());   
         	return ResponseEntity.accepted().build();
         }
         return ResponseEntity.notFound().build();

@@ -31,16 +31,16 @@ public class Machine implements Serializable {
     private Integer id;
     @Column(unique = true, length = 200)
     @NonNull
-    private String Machine_Code;
+    private String Code;
     @Column
     @NonNull
     private String Description;
     @Column
     @NonNull
-    private Double Hourly_Rent;	
+    private Double Rent;	
     @Column
     @NonNull
-    private Double Max_Hours_Per_Day;										 
+    private Double Hours;										 
 
     @ManyToMany(mappedBy = "TimecardMachine", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
 	Set<TimeCard> timecards;

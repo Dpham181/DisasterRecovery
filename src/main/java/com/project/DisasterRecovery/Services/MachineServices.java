@@ -32,8 +32,7 @@ public class MachineServices {
     
     // create machine
     public ResponseEntity<Machine> createMachine(Machine machine){
-        if(machine.getMachine_Code().isEmpty())
-            return ResponseEntity.badRequest().build();
+      
         machineRepo.save(machine);
         return ResponseEntity.status(201).build();
     }
@@ -44,9 +43,9 @@ public class MachineServices {
         {
         	Machine modifiedMachine = getOneMachine(id).getBody();
         	modifiedMachine.setDescription(machine.getDescription());
-        	modifiedMachine.setMachine_Code(machine.getMachine_Code());
-        	modifiedMachine.setHourly_Rent(machine.getHourly_Rent());
-        	modifiedMachine.setMax_Hours_Per_Day(machine.getMax_Hours_Per_Day());   
+        	modifiedMachine.setCode(machine.getCode());
+        	modifiedMachine.setRent(machine.getRent());
+        	modifiedMachine.setHours(machine.getHours());   
         	return ResponseEntity.accepted().build();
         }
         return ResponseEntity.notFound().build();
