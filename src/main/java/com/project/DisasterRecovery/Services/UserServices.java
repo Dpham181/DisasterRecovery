@@ -3,6 +3,7 @@
 package com.project.DisasterRecovery.Services;
 
 import com.project.DisasterRecovery.Entities.EndUser;
+import com.project.DisasterRecovery.exception.DuplicateException;
 import com.project.DisasterRecovery.repositories.UserRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,6 @@ import java.util.List;
 import java.util.Optional;
 
 
-
 @Service
 public class UserServices implements UserDetailsService {
 
@@ -31,21 +31,19 @@ public class UserServices implements UserDetailsService {
 
     // create user
 
-	@SuppressWarnings("rawtypes")
-	public ResponseEntity<Optional> createUser(EndUser user) {
-		System.out.println(user.getUserRole());
+	public ResponseEntity<?> createUser(EndUser user) throws DuplicateException {
 
         if(user.getEmail().isEmpty() && user.getPassword().isEmpty())
             return ResponseEntity.badRequest().build();
         EndUser DBuser = UserRepo.loadUserByUsername(user.getEmail());
-        if(DBuser == null) {
+        int id = 0;
+        if(DBuser == null ) {
             user.setPassword(encoder.encode(user.getPassword()));
+            id =  UserRepo.save(user).getId();
 
-            UserRepo.save(user);
-            return ResponseEntity.status(201).build();
         }
-        return ResponseEntity.status(409).build();
-
+        EndUser User =  UserRepo.findById(id).orElseThrow(() -> new DuplicateException("Email already exists :: " ));
+        return    ResponseEntity.ok(User);
     }
 
     // list of users
