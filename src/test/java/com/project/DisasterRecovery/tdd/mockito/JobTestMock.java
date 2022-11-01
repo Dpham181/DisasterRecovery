@@ -2,6 +2,7 @@ package com.project.DisasterRecovery.tdd.mockito;
 
 import java.util.List;
 
+import com.project.DisasterRecovery.exception.NotFoundException;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -27,20 +28,17 @@ public class JobTestMock {
 	}
 	
 	@Test
-	public Job getOneJobItem(int id)
-	{
+	public Job getOneJobItem(int id) throws NotFoundException {
 		return jobServices.getOneJob(id).getBody();
 	}
 	
 	@Test
-	public void updateJobItem(int id, Job j)
-	{
+	public void updateJobItem(int id, Job j) throws NotFoundException {
 		jobServices.updateJob(id, j);
 	}
 	
 	@Test
-	public void deleteJobItem(int id)
-	{
+	public void deleteJobItem(int id) throws NotFoundException {
 		jobServices.deleteJob(id);
 	}
 

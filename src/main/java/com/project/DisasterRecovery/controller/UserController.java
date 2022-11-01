@@ -7,6 +7,7 @@ import com.project.DisasterRecovery.Services.UserServices;
 import java.util.Objects;
 import java.util.Optional;
 
+import com.project.DisasterRecovery.exception.DuplicateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -43,7 +44,7 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 	@PostMapping("/")
-    public ResponseEntity<?> createUser(@Validated @RequestBody EndUser user){
+    public ResponseEntity<?> createUser(@Validated @RequestBody EndUser user) throws DuplicateException {
 
         return UserServices.createUser(user);
     }
@@ -56,7 +57,6 @@ public class UserController {
         
         final UserDetails userDetails = UserServices
                 .loadUserByUsername(authenticationRequest.getEmail());
-         System.out.println(userDetails);
         final String token = jwtTokenUtil.generateToken(userDetails);
 
         return ResponseEntity.ok(new JwtResponse(token));
