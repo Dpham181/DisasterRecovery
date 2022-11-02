@@ -1,6 +1,7 @@
 package com.project.DisasterRecovery.Entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -43,5 +44,5 @@ public class Machine implements Serializable {
     private Double Hours;										 
 
     @ManyToMany(mappedBy = "TimecardMachine", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
-	Set<TimeCard> timecards;
+	Set<TimeCard> timecards =  new HashSet<>();
 }
