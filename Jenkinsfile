@@ -6,12 +6,14 @@ pipeline {
     }
   
     stages {
+    
         stage('git login and checkout') {
             steps {
                git branch: 'app-dev', credentialsId: '6b2cf960-165c-4d8e-a496-a268d7837b2d', url: 'git@github.com:Dpham181/DisasterRecovery.git'
                checkout scm
             }
         }
+        
          stage('maven build project') {
             steps {
                sh 'mvn clean install'
@@ -31,12 +33,14 @@ pipeline {
             }
         }
         
+        
          stage('docker hub authentication ') {
 
 			steps {
 				bat 'echo %DockerHub_Authentication_PSW%| docker login -u %DockerHub_Authentication_USR% --password-stdin'
 			}
 		}
+
 
 		stage('docker push to docker hub') {
 
@@ -45,6 +49,6 @@ pipeline {
 			}
 		}
         
-   }    
+      
    }    
 }
