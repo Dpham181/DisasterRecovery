@@ -1,5 +1,8 @@
 package com.project.DisasterRecovery;
 import com.project.DisasterRecovery.Entities.EndUser;
+import com.project.DisasterRecovery.repositories.UserRepo;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +20,6 @@ class UserServicesTests {
 
     @Autowired
     WebTestClient   WebTestClient;
-
     
     // user endpoint  
     @Test
@@ -28,7 +30,7 @@ class UserServicesTests {
     // user register 
     @Test
     void test1() {
-        this.WebTestClient.post().uri("/users/").contentType(MediaType.APPLICATION_JSON).bodyValue(new EndUser("danhpham312@gmail.com","123456")).exchange().expectStatus().isCreated();
+        this.WebTestClient.post().uri("/users/").contentType(MediaType.APPLICATION_JSON).bodyValue(new EndUser("danhpham312@gmail.com","123456")).exchange().expectStatus().isOk();
     }
     // user login 
     @Test

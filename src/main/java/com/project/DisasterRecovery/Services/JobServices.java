@@ -47,7 +47,7 @@ public class JobServices {
 
         }
         Job ExitsJob =  jobRepo.findById(id).orElseThrow(() -> new DuplicateException("Job already exists :: " + job.getCode() ));
-
+  
         return ResponseEntity.ok(ExitsJob);
     
     }
