@@ -22,12 +22,7 @@ public class JobServices {
 
 	@Autowired 
 	JobRepo jobRepo;
-	
-//	public List<Job> getListJob()
-//	{
-//		List<Job> jobs = jobRepo.findAll();
-//		return jobs;
-//	}
+
 	
 	// list of job
     public ResponseEntity<List<Job>> getListJob() {

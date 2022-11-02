@@ -1,10 +1,11 @@
 package com.project.DisasterRecovery.controller;
 
 
-import com.project.DisasterRecovery.DTO.TimeCardDTO;
 import com.project.DisasterRecovery.Entities.TimeCard;
 import com.project.DisasterRecovery.Services.TimeCardServices;
 import com.project.DisasterRecovery.exception.DuplicateException;
+import com.project.DisasterRecovery.exception.NotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,13 +39,13 @@ public class TimeCardController {
     }
 
     @PutMapping ("/{id}")
-    public ResponseEntity<?> UpdateTimeCard(@PathVariable Integer id, @RequestBody TimeCard TimeCard){
+    public ResponseEntity<?> UpdateTimeCard(@PathVariable Integer id, @RequestBody TimeCard TimeCard) throws NotFoundException{
         return TimeCardServices.updateTimeCard(id,TimeCard);
     }
 
 
     @GetMapping ("/{id}")
-    public ResponseEntity<?> getOneTimeCard(@PathVariable int id){
+    public ResponseEntity<?> getOneTimeCard(@PathVariable int id) throws NotFoundException{
         System.out.println(id);
         return TimeCardServices.getOneTimeCard(id);
     }

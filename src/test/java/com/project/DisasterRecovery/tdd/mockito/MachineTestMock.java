@@ -37,7 +37,7 @@ public class MachineTestMock {
 	}
 	
 	@Test
-	public void getOneMachineItem()
+	public void getOneMachineItem() throws NotFoundException
 	{
 		assertEquals(200, machineServices.getOneMachine(1).getStatusCodeValue());
 	}
@@ -45,18 +45,18 @@ public class MachineTestMock {
 	@Test
 	public void createMachine() throws NotFoundException, DuplicateException {
 		Machine m = new Machine("new machine", "new machine", 1.1, 1.1);
-		assertEquals(201, machineServices.createMachine(m).getStatusCodeValue());
+		assertEquals(200, machineServices.createMachine(m).getStatusCodeValue());
 	}
 	
 	@Test
-	public void updateMachineItem()
+	public void updateMachineItem() throws NotFoundException
 	{
 		Machine m = new Machine("aaa", "bbb", 1.1, 2.1);
 		assertEquals(202, machineServices.updateMachine(2, m).getStatusCodeValue());
 	}
 	
 	@Test
-	public void deleteMachineItem()
+	public void deleteMachineItem() throws NotFoundException
 	{
 		assertEquals(202, machineServices.deleteMachine(4).getStatusCodeValue());
 	}

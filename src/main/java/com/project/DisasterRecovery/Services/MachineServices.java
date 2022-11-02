@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.project.DisasterRecovery.Entities.Machine;
+import com.project.DisasterRecovery.exception.DuplicateException;
+import com.project.DisasterRecovery.exception.NotFoundException;
 import com.project.DisasterRecovery.repositories.MachineRepo;
 
 @Service
@@ -23,27 +25,24 @@ public class MachineServices {
     }
     
     // get one machine
-    public ResponseEntity<Machine> getOneMachine(int id) {
-        if(machineRepo.existsById(id)){
-            return ResponseEntity.ok().body(machineRepo.findById(id).get());
-        }
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<Machine> getOneMachine(int id) throws NotFoundException {
+        Machine m = machineRepo.findById(id).orElseThrow(() -> new NotFoundException("Machine not found " + id));
+    	return ResponseEntity.ok(m);
     }
     
     // create machine
-    public ResponseEntity<Machine> createMachine(Machine machine){
+    public ResponseEntity<Machine> createMachine(Machine machine) throws DuplicateException{
       
     	Machine checkMachine = machineRepo.loadMachineByCode(machine.getCode());
+    	int id = 0;
     	if(checkMachine == null)
-    	{
-    		machineRepo.save(machine);
-            return ResponseEntity.status(201).build();
-    	}
-        return ResponseEntity.status(409).build();
+    		id = machineRepo.save(machine).getId();
+    	Machine existMachine = machineRepo.findById(id).orElseThrow(() -> new DuplicateException("Machine already exists: " + machine.getCode()));
+        return ResponseEntity.ok(existMachine);
     }
     
     // update machine
-    public ResponseEntity<Machine> updateMachine(int id, Machine machine){
+    public ResponseEntity<Machine> updateMachine(int id, Machine machine) throws NotFoundException{
         if(getOneMachine(id).hasBody())
         {
         	Machine modifiedMachine = getOneMachine(id).getBody();
@@ -58,7 +57,7 @@ public class MachineServices {
     }
     
     // delete machine
-    public ResponseEntity<Machine> deleteMachine(int id)
+    public ResponseEntity<Machine> deleteMachine(int id) throws NotFoundException
     {
     	if(getOneMachine(id).hasBody())
     	{
