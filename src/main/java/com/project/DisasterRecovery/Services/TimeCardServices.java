@@ -43,10 +43,13 @@ public class TimeCardServices {
     // it should take a list of job and a list machine 
     public ResponseEntity<TimeCard> createTimeCard(TimeCard timecard) throws DuplicateException{
        
+    	//timecard.getTimecardJob().stream().forEach(a -> System.out.println(a.getId()));
+    	
     	if(timecard.getCode().isEmpty())
             return ResponseEntity.badRequest().build();
         // get all the id of jobs
         List<Integer> JobIds =  timecard.getTimecardJob().stream().map(job-> JobRepo.loadJobByJobCode(job.getCode()).getId()).collect(Collectors.toList());
+        System.out.println(JobIds);
         // [1, 2]
         // get all the id of machines
         List<Integer> MachineCodes =  timecard.getTimecardMachine().stream().map(machine-> MachineRepo.loadMachineByCode(machine.getCode()).getId()).collect(Collectors.toList());
@@ -64,9 +67,7 @@ public class TimeCardServices {
 
         final int finalId = id;
         JobIds.forEach(j -> timecardRepo.AddJob(finalId,j));
-        System.out.println("add job finished");
         MachineCodes.forEach(m -> timecardRepo.AddMachine(finalId, m));
-        System.out.println("add machine finished");
         return ResponseEntity.ok(ExitsTimeCard);
     }
     

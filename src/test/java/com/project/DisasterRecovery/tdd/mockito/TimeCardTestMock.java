@@ -57,7 +57,6 @@ public class TimeCardTestMock {
 		m.add(new Machine("HT-100","han Truck with 1000LBS",12.0,8.0));
 		m.add(new Machine("AirComp","Air Compressor",10.0, 4.0));
 		tc.setTimecardMachine(m);
-		System.out.println(timecardServices.createTimeCard(tc).getStatusCodeValue());
 		assertEquals(200, timecardServices.createTimeCard(tc).getStatusCodeValue());
 	}
 	
