@@ -45,7 +45,7 @@ public class JobTestMock {
 
 		assertEquals(200, jobServices.getOneJob(1).getStatusCodeValue());
 	}
-	/*
+	
 	@Test
 	public void createJob() throws NotFoundException, DuplicateException {
 		Job j = new Job("new job", "new job", 1.1, 1.1);

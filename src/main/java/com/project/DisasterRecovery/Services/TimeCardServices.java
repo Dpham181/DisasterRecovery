@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.project.DisasterRecovery.Entities.Job;
+import com.project.DisasterRecovery.Entities.Machine;
 import com.project.DisasterRecovery.exception.DuplicateException;
+import com.project.DisasterRecovery.exception.NotFoundException;
 import com.project.DisasterRecovery.repositories.JobRepo;
 import com.project.DisasterRecovery.repositories.MachineRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,27 +34,28 @@ public class TimeCardServices {
     }
     
     // get one timecard
-    public ResponseEntity<TimeCard> getOneTimeCard(int id) {
-        if(timecardRepo.existsById(id)){
-            return ResponseEntity.ok().body(timecardRepo.findById(id).get());
-        }
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<TimeCard> getOneTimeCard(int id) throws NotFoundException {
+        TimeCard tc = timecardRepo.findById(id).orElseThrow(() -> new NotFoundException("Timecard not found " + id));
+        return ResponseEntity.ok(tc);
     }
     
     // create timecard
     // it should take a list of job and a list machine 
     public ResponseEntity<TimeCard> createTimeCard(TimeCard timecard) throws DuplicateException{
-        if(timecard.getCode().isEmpty())
+       
+    	if(timecard.getCode().isEmpty())
             return ResponseEntity.badRequest().build();
-        // get all the id of jobs and machines
+        // get all the id of jobs
         List<Integer> JobIds =  timecard.getTimecardJob().stream().map(job-> JobRepo.loadJobByJobCode(job.getCode()).getId()).collect(Collectors.toList());
         // [1, 2]
-        //List<Integer> MachineCodes =  timecard.getTimecardMachine().stream().map(machine-> MachineRepo(machine.).getId()).collect(Collectors.toList());
+        // get all the id of machines
+        List<Integer> MachineCodes =  timecard.getTimecardMachine().stream().map(machine-> MachineRepo.loadMachineByCode(machine.getCode()).getId()).collect(Collectors.toList());
 
         TimeCard TimeCard = timecardRepo.loadCardByCode(timecard.getCode());  // load timecard in database
         int id= 0 ;
         if(TimeCard == null ) {  // if this timecard not exits in database then add
             timecard.setTimecardJob(new HashSet<Job>()); // {timecard, jobs[]}
+            timecard.setTimecardMachine(new HashSet<Machine>()); // {timecard, machines[]}
             id =  timecardRepo.save(timecard).getId();
             System.out.println(id);
 
@@ -61,13 +64,14 @@ public class TimeCardServices {
 
         final int finalId = id;
         JobIds.forEach(j -> timecardRepo.AddJob(finalId,j));
-       // add with machince
-
+        System.out.println("add job finished");
+        MachineCodes.forEach(m -> timecardRepo.AddMachine(finalId, m));
+        System.out.println("add machine finished");
         return ResponseEntity.ok(ExitsTimeCard);
     }
     
     // update timecard
-    public ResponseEntity<TimeCard> updateTimeCard(int id, TimeCard timecard){
+    public ResponseEntity<TimeCard> updateTimeCard(int id, TimeCard timecard) throws NotFoundException{
         if(getOneTimeCard(id).hasBody())
         {
         	TimeCard modifiedTimecard = getOneTimeCard(id).getBody();
@@ -85,7 +89,7 @@ public class TimeCardServices {
     }
     
     // delete timecard
-    public ResponseEntity<TimeCard> deleteTimeCard(int id)
+    public ResponseEntity<TimeCard> deleteTimeCard(int id) throws NotFoundException
     {
     	if(getOneTimeCard(id).hasBody())
     	{

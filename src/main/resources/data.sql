@@ -1,13 +1,12 @@
 insert into end_user(email,password) values
 ("admin@gmail.com","$2a$10$xkpl86kt4nhVFoC8XYyq6egRF8WmHL4zp4af6P610wBYoqhW8mTci"),
 ("user@gmail.com","$2a$10$xkpl86kt4nhVFoC8XYyq6egRF8WmHL4zp4af6P610wBYoqhW8mTci");
-insert into role(role) values("Admin"),("User");
 
+insert into role(role) values("Admin"),("User");
 
 insert into user_roles values
 (1,1),
 (2,2);
-
 
 insert into job(code,description,rate,hours) values
 ("Plumber","Fix The Plumbing",65, 6),
@@ -26,4 +25,14 @@ insert into time_card(code, contractor, hours, amount, status) values
 ("PA-120", "Mike Fernandez", 80, 2400, "Review"),
 ("Nj-080", "Robin Gaze", 120, 3000, "Review"),
 ("MA-340", "Adam Su", 100, 2800, "Finalized"),
-("KC-140", "David Rowly", 140, 3200, "Finalized")
+("KC-140", "David Rowly", 140, 3200, "Finalized");
+
+insert into timecard_machine values
+(2,1), 
+(3,2);
+
+insert into timecard_job values
+(1,1), 
+(1,2);
+
+

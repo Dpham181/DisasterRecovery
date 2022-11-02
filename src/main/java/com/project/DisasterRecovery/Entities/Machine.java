@@ -44,5 +44,5 @@ public class Machine implements Serializable {
     private Double Hours;										 
 
     @ManyToMany(mappedBy = "TimecardMachine", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
-	Set<TimeCard> timecards =  new HashSet<>();
+	Set<TimeCard> timecards;
 }
