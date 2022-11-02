@@ -10,10 +10,12 @@
 	</parent>
 	<groupId>com.project</groupId>
 	<artifactId>DisasterRecovery </artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>DisasterRecovery </name>
+	<name>DisasterRecovery</name>
 	<description>Disaster Recovery project for Spring Boot</description>
+	<packaging>war</packaging>
+
 	<properties>
+
 		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
@@ -90,6 +92,8 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+				        <finalName>DisasterRecovery</finalName>                   
+
 					<excludes>
 						<exclude>
 							<groupId>org.project-lombok</groupId>
