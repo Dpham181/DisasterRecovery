@@ -11,7 +11,7 @@ pipeline {
     
         stage('git login and checkout') {
             steps {
-               git branch: 'app-dev', credentialsId: '6b2cf960-165c-4d8e-a496-a268d7837b2d', url: 'git@github.com:Dpham181/DisasterRecovery.git'
+               git branch: 'main', credentialsId: '6b2cf960-165c-4d8e-a496-a268d7837b2d', url: 'git@github.com:Dpham181/DisasterRecovery.git'
                checkout scm
             }
         }
