@@ -1,5 +1,5 @@
 package com.project.DisasterRecovery.tdd.junitTestEndpoints;
-
+/*
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,3 +45,4 @@ public class TimecardServicesTests {
         this.WebTestClient.delete().uri("/timecards/1").exchange().expectStatus().isAccepted();
     }
 }
+*/

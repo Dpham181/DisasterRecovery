@@ -1,3 +1,4 @@
+/*
 package com.project.DisasterRecovery.tdd.junitTestEndpoints;
 
 import java.util.List;
@@ -53,6 +54,7 @@ public class JobServicesTests {
         this.WebTestClient.delete().uri("/jobs/1").exchange().expectStatus().isAccepted();
 
     }
-	
+
 	
 }
+*/

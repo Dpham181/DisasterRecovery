@@ -1,3 +1,5 @@
+
+/*
 package com.project.DisasterRecovery.tdd.junitTestEndpoints;
 
 import org.junit.jupiter.api.Test;
@@ -43,3 +45,4 @@ public class MachineServicesTests {
         this.WebTestClient.delete().uri("/machines/1").exchange().expectStatus().isAccepted();
     }
 }
+*/
