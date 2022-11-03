@@ -1,6 +1,7 @@
 package com.project.DisasterRecovery.Entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -52,7 +53,10 @@ public class TimeCard  implements Serializable {
     private Double Amount;
     @Column
     @NonNull
-    private String Status ;		
+    private String Status ;	
+    @Column
+    @NonNull
+    private Date date ;	
     
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="USER_ID")
