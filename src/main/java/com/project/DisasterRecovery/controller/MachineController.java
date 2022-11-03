@@ -41,5 +41,10 @@ public class MachineController {
     public ResponseEntity<?> getOneJob(@PathVariable int id) throws NotFoundException{
         return MachineServices.getOneMachine(id);
     }
+    
+    @DeleteMapping ("/{id}")
+    public ResponseEntity<?> deleteJob(@PathVariable int id) throws NotFoundException{
+        return MachineServices.deleteMachine(id);
+    }
 
 }

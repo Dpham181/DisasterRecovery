@@ -1,6 +1,7 @@
 package com.project.DisasterRecovery.Entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -8,13 +9,16 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -49,8 +53,15 @@ public class TimeCard  implements Serializable {
     private Double Amount;
     @Column
     @NonNull
-    private String Status ;		
+    private String Status ;	
+    @Column
+    @NonNull
+    private Date date ;	
     
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="USER_ID")
+    @JsonIgnore
+    private EndUser owner;
     
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})       
     @JoinTable(																																			

@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.project.DisasterRecovery.Entities.Role;
+import com.project.DisasterRecovery.Entities.RoleBase;
 import com.project.DisasterRecovery.repositories.RoleRepo;
 
 @Service
@@ -19,6 +20,10 @@ public class RoleServices {
             return ResponseEntity.badRequest().build();
         roleRepo.save(role);
         return ResponseEntity.status(201).build();
+    }
+    
+    public RoleBase getRole(int id){
+    	return roleRepo.findById(id).get().getRole();
     }
 	
 }
