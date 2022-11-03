@@ -4,12 +4,16 @@ package com.project.DisasterRecovery.Services;
 
 import com.project.DisasterRecovery.Entities.EndUser;
 import com.project.DisasterRecovery.Entities.Job;
+import com.project.DisasterRecovery.Entities.Role;
 import com.project.DisasterRecovery.exception.DuplicateException;
 import com.project.DisasterRecovery.exception.NotFoundException;
+import com.project.DisasterRecovery.repositories.RoleRepo;
 import com.project.DisasterRecovery.repositories.UserRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +32,8 @@ public class UserServices implements UserDetailsService {
 
     @Autowired
     UserRepo   UserRepo;
-
+    @Autowired
+    RoleRepo   RoleRepo;
     @Autowired
     PasswordEncoder encoder;
 
@@ -72,9 +78,11 @@ public class UserServices implements UserDetailsService {
        if(DBuser == null) {
            throw new UsernameNotFoundException("User not found with email: " + email);
        }
-        User user = new User(DBuser.getEmail(), DBuser.getPassword(), new ArrayList<>() );
-
-       
+       Optional<Role> roles = RoleRepo.findById(DBuser.getId());
+       SimpleGrantedAuthority authority = new SimpleGrantedAuthority(roles.get().getRole().name());
+       Collection<GrantedAuthority> authorities = new ArrayList<>();
+       authorities.add(authority);
+        User user = new User(DBuser.getEmail(), DBuser.getPassword(),authorities );
         return user;
 			
 	}	
