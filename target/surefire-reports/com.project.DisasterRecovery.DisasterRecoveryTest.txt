@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.project.DisasterRecovery.DisasterRecoveryTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 34.112 s - in com.project.DisasterRecovery.DisasterRecoveryTest
