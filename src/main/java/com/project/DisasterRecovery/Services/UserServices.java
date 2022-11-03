@@ -69,14 +69,12 @@ public class UserServices implements UserDetailsService {
 
 		EndUser DBuser = UserRepo.loadUserByUsername(email);
 
-
+       if(DBuser == null) {
+           throw new UsernameNotFoundException("User not found with email: " + email);
+       }
         User user = new User(DBuser.getEmail(), DBuser.getPassword(), new ArrayList<>() );
 
-        if(user.getPassword().isEmpty()){
-
-            throw new UsernameNotFoundException("User not found with email: " + email);
-        }
-
+       
         return user;
 			
 	}	

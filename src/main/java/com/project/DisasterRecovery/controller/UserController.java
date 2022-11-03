@@ -53,25 +53,30 @@ public class UserController {
     public ResponseEntity<?> generateAuthenticationToken(@RequestBody EndUser authenticationRequest)
             throws Exception {
 
-        authenticate(authenticationRequest.getEmail(), authenticationRequest.getPassword());
         
-        final UserDetails userDetails = UserServices
-                .loadUserByUsername(authenticationRequest.getEmail());
-        final String token = jwtTokenUtil.generateToken(userDetails);
+       
+        return  authenticate(authenticationRequest.getEmail(), authenticationRequest.getPassword());
 
-        return ResponseEntity.ok(new JwtResponse(token));
     }
 
-    private void authenticate(String username, String password) throws Exception {
+    private ResponseEntity<?> authenticate(String username, String password) throws Exception {
         Objects.requireNonNull(username);
         Objects.requireNonNull(password);
+        final UserDetails userDetails = UserServices
+                .loadUserByUsername(username);
+        if(userDetails == null) ResponseEntity.notFound().build().ok(new JwtResponse(""));
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (DisabledException e) {
-            throw new Exception("USER_DISABLED", e);
+        	return  ResponseEntity.notFound().build().ok(new JwtResponse(""));
         } catch (BadCredentialsException e) {
-            throw new Exception("INVALID_CREDENTIALS", e);
+        	return  ResponseEntity.ok(new JwtResponse(""));
         }
+        
+       
+        final String token = jwtTokenUtil.generateToken(userDetails);
+
+        return ResponseEntity.ok(new JwtResponse(token));
     }
    
 }
