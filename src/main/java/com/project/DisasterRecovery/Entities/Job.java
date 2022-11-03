@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -44,5 +46,6 @@ public class Job implements Serializable {
     private Double Hours;										 
 
     @ManyToMany(mappedBy = "TimecardJob", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
+    @JsonIgnore
 	Set<TimeCard> timecards;
 }
