@@ -46,5 +46,10 @@ public class JobController {
       public ResponseEntity<?> getOneJob(@PathVariable int id) throws NotFoundException {
             return JobServices.getOneJob(id);
       }
+      
+      @DeleteMapping ("/{id}")
+      public ResponseEntity<?> deleteOneJob(@PathVariable int id) throws NotFoundException {
+            return JobServices.deleteJob(id);
+      }
 
 }
