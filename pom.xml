@@ -12,7 +12,6 @@
 	<artifactId>DisasterRecovery </artifactId>
 	<name>DisasterRecovery</name>
 	<description>Disaster Recovery project for Spring Boot</description>
-	<packaging>war</packaging>
 
 	<properties>
 
