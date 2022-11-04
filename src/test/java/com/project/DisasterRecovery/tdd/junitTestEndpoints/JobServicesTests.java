@@ -1,5 +1,5 @@
 
-package com.project.DisasterRecovery.tdd.junitTestEndpoints;
+/*package com.project.DisasterRecovery.tdd.junitTestEndpoints;
 
 import java.util.List;
 
@@ -57,4 +57,4 @@ public class JobServicesTests {
 
 	
 }
-
+*/

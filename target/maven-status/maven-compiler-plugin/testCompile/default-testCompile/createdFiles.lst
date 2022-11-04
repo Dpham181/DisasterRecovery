@@ -1,7 +1,6 @@
-com/project/DisasterRecovery/tdd/mockito/RoleTestMock.class
-com/project/DisasterRecovery/tdd/mockito/TimeCardTestMock.class
 com/project/DisasterRecovery/DisasterRecoveryTest.class
 com/project/DisasterRecovery/tdd/mockito/MachineTestMock.class
+com/project/DisasterRecovery/tdd/mockito/RoleTestMock.class
 com/project/DisasterRecovery/tdd/mockito/JobTestMock.class
 com/project/DisasterRecovery/tdd/mockito/EndUserTestMock.class
-com/project/DisasterRecovery/UserServicesTests.class
+com/project/DisasterRecovery/tdd/mockito/TimeCardTestMock.class

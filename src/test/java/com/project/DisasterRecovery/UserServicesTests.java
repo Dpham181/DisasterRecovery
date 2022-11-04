@@ -1,4 +1,4 @@
-package com.project.DisasterRecovery;
+/*package com.project.DisasterRecovery;
 import com.project.DisasterRecovery.Entities.EndUser;
 import com.project.DisasterRecovery.repositories.UserRepo;
 
@@ -39,3 +39,4 @@ class UserServicesTests {
 }
     
 }
+*/
