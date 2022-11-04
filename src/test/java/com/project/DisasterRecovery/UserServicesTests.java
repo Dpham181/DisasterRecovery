@@ -35,7 +35,7 @@ class UserServicesTests {
     // user login 
     @Test
     void test2() {
-        this.WebTestClient.post().uri("/users/login").contentType(MediaType.APPLICATION_JSON).bodyValue(new EndUser("danhpham312@gmail.com","123456")).exchange().expectStatus().isOk();
+        this.WebTestClient.post().uri("/users/login").contentType(MediaType.APPLICATION_JSON).bodyValue(new EndUser("admin@gmail.com","123456")).exchange().expectStatus().isOk();
 }
     
 }
