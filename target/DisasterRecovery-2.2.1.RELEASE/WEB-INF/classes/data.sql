@@ -21,11 +21,11 @@ insert into machine(code,description,rent,hours) values
 ("AirComp","Air Compressor",10, 4),
 ("Power Tools","Power Tools",6, 8);
 
-insert into time_card(code, contractor, hours, amount, status) values
-("PA-120", "Mike Fernandez", 80, 2400, "Review"),
-("Nj-080", "Robin Gaze", 120, 3000, "Review"),
-("MA-340", "Adam Su", 100, 2800, "Finalized"),
-("KC-140", "David Rowly", 140, 3200, "Finalized");
+insert into time_card(code, contractor, hours, amount, status,user_id) values
+("PA-120", "Mike Fernandez", 80, 2400, "Review",1),
+("Nj-080", "Robin Gaze", 120, 3000, "Review",2),
+("MA-340", "Adam Su", 100, 2800, "Finalized",1),
+("KC-140", "David Rowly", 140, 3200, "Finalized",1);
 
 insert into timecard_machine values
 (2,1), 

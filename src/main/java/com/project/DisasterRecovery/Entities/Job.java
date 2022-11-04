@@ -25,8 +25,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 public class Job implements Serializable {
-
-	
 	
 	private static final long serialVersionUID = 1L;
 	@Id

@@ -20,7 +20,6 @@ import com.project.DisasterRecovery.Services.TimeCardServices;
 import com.project.DisasterRecovery.exception.DuplicateException;
 import com.project.DisasterRecovery.exception.NotFoundException;
 import com.project.DisasterRecovery.repositories.TimeCardRepo;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TimeCardTestMock {
@@ -73,5 +72,4 @@ public class TimeCardTestMock {
 	{
 		assertEquals(202, timecardServices.deleteTimeCard(4).getStatusCodeValue());
 	}
-	
 }

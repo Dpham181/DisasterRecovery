@@ -20,8 +20,6 @@ import com.project.DisasterRecovery.Services.JobServices;
 import com.project.DisasterRecovery.repositories.JobRepo;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class JobTestMock {
@@ -40,9 +38,7 @@ public class JobTestMock {
 	}
 
 	@Test
-
 	public void getOneJobItem() throws NotFoundException {
-
 		assertEquals(200, jobServices.getOneJob(1).getStatusCodeValue());
 	}
 	
@@ -58,10 +54,8 @@ public class JobTestMock {
 		assertEquals(202, jobServices.updateJob(3, j).getStatusCodeValue());
 	}
 
-	
 	@Test
 	public void deleteJobItem() throws NotFoundException {
 		assertEquals(202, jobServices.deleteJob(4).getStatusCodeValue());
 	}
-	
 }

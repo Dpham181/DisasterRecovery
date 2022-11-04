@@ -9,7 +9,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String index()
 	{
-		return "Api testing";
+		return "DISASTER RECOVERY LAB";
 	}
 	
 

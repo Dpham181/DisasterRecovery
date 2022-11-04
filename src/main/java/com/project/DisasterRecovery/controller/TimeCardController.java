@@ -17,10 +17,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value="/TimeCards", method = RequestMethod.OPTIONS)
 public class TimeCardController {
 
-
     @Autowired
     TimeCardServices TimeCardServices;
-
 
     @GetMapping("")
     public ResponseEntity<?> listOfTimeCard(){
@@ -42,8 +40,7 @@ public class TimeCardController {
     public ResponseEntity<?> UpdateTimeCard(@PathVariable Integer id, @RequestBody TimeCard TimeCard) throws NotFoundException{
         return TimeCardServices.updateTimeCard(id,TimeCard);
     }
-
-
+    
     @GetMapping ("/{id}")
     public ResponseEntity<?> getOneTimeCard(@PathVariable int id) throws NotFoundException{
         System.out.println(id);

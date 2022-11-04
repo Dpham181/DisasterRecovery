@@ -1,5 +1,7 @@
 package com.project.DisasterRecovery.tdd.junitTestEndpoints;
-/*
+
+import java.util.Date;
+
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +34,12 @@ public class TimecardServicesTests {
 	
 	@Test
     void testCreateTimeCard() {
-        this.WebTestClient.post().uri("/timecards/").contentType(MediaType.APPLICATION_JSON).bodyValue(new TimeCard("PA-120", "Mike Fernandez", 80.0, 2400.0, "Open")).exchange().expectStatus().isCreated();
+        this.WebTestClient.post().uri("/timecards/").contentType(MediaType.APPLICATION_JSON).bodyValue(new TimeCard("PA-120", "Mike Fernandez", 80.0, 2400.0, "Open", new Date())).exchange().expectStatus().isCreated();
     }
 	
 	@Test
     void testUpdateTimeCard() {
-        this.WebTestClient.put().uri("/timecards/1").contentType(MediaType.APPLICATION_JSON).bodyValue(new TimeCard("PA-120", "Mike Fernandez", 80.0, 2400.0, "Open")).exchange().expectStatus().isAccepted();
+        this.WebTestClient.put().uri("/timecards/1").contentType(MediaType.APPLICATION_JSON).bodyValue(new TimeCard("PA-120", "Mike Fernandez", 80.0, 2400.0, "Open", new Date())).exchange().expectStatus().isAccepted();
     }
 	
 	@Test
@@ -45,4 +47,3 @@ public class TimecardServicesTests {
         this.WebTestClient.delete().uri("/timecards/1").exchange().expectStatus().isAccepted();
     }
 }
-*/

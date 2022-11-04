@@ -1,5 +1,4 @@
 package com.project.DisasterRecovery.controller;
-
 import com.project.DisasterRecovery.Entities.EndUser;
 import com.project.DisasterRecovery.Entities.JwtResponse;
 import com.project.DisasterRecovery.Services.RoleServices;
@@ -22,8 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-
-
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @Transactional
@@ -32,18 +29,12 @@ public class UserController {
 
     @Autowired
     UserServices UserServices;
-
     @Autowired
     RoleServices RoleService;
-
     @Autowired
     private com.project.DisasterRecovery.Config.JwtTokenUtil jwtTokenUtil;
-
-
     @Autowired
     private AuthenticationManager authenticationManager;
-
-    
    
 	@GetMapping("")
     public ResponseEntity<?> index(){
@@ -57,12 +48,8 @@ public class UserController {
     
 	@PostMapping("/login")
     public ResponseEntity<?> generateAuthenticationToken(@RequestBody EndUser authenticationRequest)
-            throws Exception {
-
-        
-       
+            throws Exception {       
         return  authenticate(authenticationRequest.getEmail(), authenticationRequest.getPassword());
-
     }
 
     private ResponseEntity<?> authenticate(String username, String password) throws Exception {
@@ -82,7 +69,6 @@ public class UserController {
         } catch (BadCredentialsException e) {
         	return  ResponseEntity.ok(new JwtResponse("",""));
         }
-        
        
         final String token = jwtTokenUtil.generateToken(userDetails);
         final String role = userDetails.getAuthorities().stream().findFirst().get().getAuthority();

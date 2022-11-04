@@ -1,9 +1,5 @@
-
-
 package com.project.DisasterRecovery.Services;
-
 import com.project.DisasterRecovery.Entities.EndUser;
-import com.project.DisasterRecovery.Entities.Job;
 import com.project.DisasterRecovery.Entities.Role;
 import com.project.DisasterRecovery.exception.DuplicateException;
 import com.project.DisasterRecovery.exception.NotFoundException;
@@ -26,19 +22,15 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
 public class UserServices implements UserDetailsService {
-
     @Autowired
     UserRepo   UserRepo;
     @Autowired
     RoleRepo   RoleRepo;
     @Autowired
     PasswordEncoder encoder;
-
     // create user
-
 	public ResponseEntity<?> createUser(EndUser user) throws DuplicateException {
 
         if(user.getEmail().isEmpty() && user.getPassword().isEmpty())
@@ -55,14 +47,12 @@ public class UserServices implements UserDetailsService {
     }
 
     // list of users
-
     public ResponseEntity<List<EndUser>> getListUsers() {
         List<EndUser> Users = UserRepo.findAll();
         if(Users.isEmpty()) return ResponseEntity.notFound().build();
         return ResponseEntity.ok().body(Users);
     }
    // get one user
-
     public ResponseEntity<EndUser> getOneUsers(int id) throws NotFoundException {
         if(UserRepo.existsById(id)){
             return ResponseEntity.ok().body(UserRepo.findById(id).get());
