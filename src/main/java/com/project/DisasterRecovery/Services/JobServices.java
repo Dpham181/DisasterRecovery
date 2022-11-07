@@ -1,9 +1,7 @@
 package com.project.DisasterRecovery.Services;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.project.DisasterRecovery.Entities.EndUser;
 import com.project.DisasterRecovery.exception.DuplicateException;
 import com.project.DisasterRecovery.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,7 @@
 package com.project.DisasterRecovery.Entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -32,6 +33,11 @@ public class EndUser implements Serializable {
     		  name = "user_roles", 
     		  joinColumns = @JoinColumn(name = "User_Id"), 
     		  inverseJoinColumns = @JoinColumn(name = "Role_Id"))
+    @JsonIgnore
     Set<Role> UserRole = new HashSet<>();
+    
+    @OneToMany
+    @JsonIgnore
+    Set<TimeCard> Timecards;
 }
 

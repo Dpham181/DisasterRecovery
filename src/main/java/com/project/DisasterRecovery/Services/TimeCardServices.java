@@ -1,5 +1,6 @@
 package com.project.DisasterRecovery.Services;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -44,7 +45,7 @@ public class TimeCardServices {
     public ResponseEntity<TimeCard> createTimeCard(TimeCard timecard) throws DuplicateException{
        
     	//timecard.getTimecardJob().stream().forEach(a -> System.out.println(a.getId()));
-    	
+    	Date d = new Date();
     	if(timecard.getCode().isEmpty())
             return ResponseEntity.badRequest().build();
         // get all the id of jobs
@@ -57,6 +58,7 @@ public class TimeCardServices {
         TimeCard TimeCard = timecardRepo.loadCardByCode(timecard.getCode());  // load timecard in database
         int id= 0 ;
         if(TimeCard == null ) {  // if this timecard not exits in database then add
+        	timecard.setDate(d);
             timecard.setTimecardJob(new HashSet<Job>()); // {timecard, jobs[]}
             timecard.setTimecardMachine(new HashSet<Machine>()); // {timecard, machines[]}
             id =  timecardRepo.save(timecard).getId();

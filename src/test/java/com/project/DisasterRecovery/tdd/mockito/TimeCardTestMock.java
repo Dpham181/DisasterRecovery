@@ -3,6 +3,7 @@ import com.project.DisasterRecovery.Entities.*;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,7 +20,6 @@ import com.project.DisasterRecovery.Services.TimeCardServices;
 import com.project.DisasterRecovery.exception.DuplicateException;
 import com.project.DisasterRecovery.exception.NotFoundException;
 import com.project.DisasterRecovery.repositories.TimeCardRepo;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TimeCardTestMock {
@@ -46,8 +46,8 @@ public class TimeCardTestMock {
 	@Test
 	public void createTimeCardItem() throws DuplicateException
 	{
-		
-		TimeCard tc = new TimeCard("new timecard", "aa", 22.0, 1220.0, "Open");
+		Date d = new Date();
+		TimeCard tc = new TimeCard("new timecard", "aa", 22.0, 1220.0, "Open", d);
 		Set<Job> j = new HashSet<Job>();
 		j.add(new Job("Plumber","Fix The Plumbing",65.0, 6.0));
 		j.add(new Job("General Labor","General Work",30.0, 8.0));
@@ -62,7 +62,8 @@ public class TimeCardTestMock {
 	@Test
 	public void updateTimeCardItem() throws NotFoundException
 	{
-		TimeCard tc = new TimeCard("update timecard", "update", 22.0, 1220.0, "Open");
+		Date d = new Date();
+		TimeCard tc = new TimeCard("update timecard", "update", 22.0, 1220.0, "Open", d);
 		assertEquals(202, timecardServices.updateTimeCard(3, tc).getStatusCodeValue());
 	}
 	
@@ -71,5 +72,4 @@ public class TimeCardTestMock {
 	{
 		assertEquals(202, timecardServices.deleteTimeCard(4).getStatusCodeValue());
 	}
-	
 }
